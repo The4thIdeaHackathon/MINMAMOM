@@ -6,7 +6,7 @@
 ---
 
 #### Notice
-* Version: 0.1
+* Version: 0.1.1
 * Team: MINMAMOM(Min철이의 Ma지막 Mom부림)
 * Developer: [BongO Moon](https://github.com/BongOmoon), [SeokAm Moon](https://github.com/mon823), [MinCheol Kimchi](https://github.com/qkqk9898)
 * first date: 2018.05.11
@@ -29,6 +29,6 @@
 #### Log
 
 	2018-05-11 init project(0.1)
-    2018-05-12 
-
+	2018-05-12 add SplashActivity, external font(using Typekit Library)(0.1.1)
+	2018-05-12 
 
