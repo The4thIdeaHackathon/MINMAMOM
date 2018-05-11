@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">still_alive</string>
+    <string name="app_name">Still Alive</string>
+    <string name="setting">setting</string>
 </resources>
