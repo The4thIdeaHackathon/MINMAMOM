@@ -12,7 +12,7 @@
 * first date: 2018.05.11
 * last date: 2018.05.12
 * Development environment specifics:
-	- Android Studio 3.1
+	- Android Studio 3.1(Java, Kotlin)
     - Target SDK Version: 27(Oreo)
     - Min SDK Version: 23(Marshmallow)
     
