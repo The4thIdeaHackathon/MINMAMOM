@@ -1,5 +1,10 @@
 package kr.ac.jbnu.se.minmamom.still_alive.activity
-
+/**
+ * Copyright 2018 All rights reserved by MINMAMOM.
+ *
+ * @author bongO moon
+ * @since 2018. 05. 12.
+ */
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,24 +12,22 @@ import android.view.View
 import android.widget.Toast
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.activity_init.*
+import kotlinx.android.synthetic.main.activity_init_login.*
+import kotlinx.android.synthetic.main.activity_init_ready.*
 import kr.ac.jbnu.se.minmamom.still_alive.R
 import kr.ac.jbnu.se.mobileapp.activity.base.ToolbarBaseActivity
-
 
 class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private val TAG = "GoogleActivity"
     private val RC_SIGN_IN = 9001
     private var mAuth: FirebaseAuth? = null
-    private var mGoogleSignInClient: GoogleSignInClient? = null
     private var mGoogleApiClient: GoogleApiClient? = null
 
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
@@ -33,10 +36,9 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, GoogleApiClie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_init)
-        
-        btn_sign_in.setOnClickListener(this)
-        btn_sign_out.setOnClickListener(this)
+        setContentView(R.layout.activity_init_ready)
+
+        btn_setup_next.setOnClickListener(this)
         //updateUI(false)
 
         // [START config_signin]
@@ -46,8 +48,6 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, GoogleApiClie
                 .requestEmail()
                 .build()
         // [END config_signin]
-
-        //mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         mGoogleApiClient = GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
@@ -72,8 +72,11 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, GoogleApiClie
         val i = v!!.id
 
         when (i) {
+            R.id.btn_setup_next -> {
+                setContentView(R.layout.activity_init_login)
+                btn_sign_in.setOnClickListener(this)
+            }
             R.id.btn_sign_in -> signIn()
-            R.id.btn_sign_out -> signOut()
         }
     }
 
@@ -142,11 +145,11 @@ class LoginActivity : ToolbarBaseActivity(), View.OnClickListener, GoogleApiClie
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            btn_sign_in?.visibility = View.GONE
-            btn_sign_out?.visibility = View.VISIBLE
-        } else {
-            btn_sign_in?.visibility = View.VISIBLE
-            btn_sign_out?.visibility = View.GONE
+            var nextintent = Intent(this, UserInfoActivity::class.java)
+            nextintent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(nextintent)
+        } else{
+            btn_sign_in?.setVisibility(View.VISIBLE);
         }
     }
 }

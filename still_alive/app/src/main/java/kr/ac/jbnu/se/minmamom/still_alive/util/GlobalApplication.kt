@@ -20,7 +20,8 @@ class GlobalApplication : Application() {
         super.onCreate()
         instance = this
         Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "font/BMJUA_ttf.ttf"))
+                .addNormal(Typekit.createFromAsset(this, "font/BMHANNA_11yrs_ttf.ttf"))
+                .addCustom1(Typekit.createFromAsset(this, "font/BMHANNA_11yrs_ttf.ttf"))
         //        .addBold(Typekit.createFromAsset(this, "fonts/NanumBarunGothic-Bold.otf"))
     }
 

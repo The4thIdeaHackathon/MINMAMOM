@@ -1,14 +1,14 @@
 package kr.ac.jbnu.se.mobileapp.activity.base
 
 /**
- * Copyright 2018 All rights reserved by WaySeekers.
+ * Copyright 2018 All rights reserved by MINMAMOM.
  *
  * @author bongO moon
- * @since 2018. 04. 17.
+ * @since 2018. 05. 12.
  */
-
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
@@ -17,12 +17,20 @@ import android.view.Menu
 import com.tsengvn.typekit.TypekitContextWrapper
 import kotlinx.android.synthetic.main.toolbar.*
 import kr.ac.jbnu.se.minmamom.still_alive.R
+import kr.ac.jbnu.se.minmamom.still_alive.handler.BackPressCloseHandler
+import kr.ac.jbnu.se.minmamom.still_alive.service.InitMusicService
+
 
 abstract class ToolbarBaseActivity : AppCompatActivity() {
+
+    private var backPressCloseHandler: BackPressCloseHandler? = null
+    private var flag: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prepareTaskDescription()
+
+        backPressCloseHandler = BackPressCloseHandler(this)
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -48,6 +56,13 @@ abstract class ToolbarBaseActivity : AppCompatActivity() {
                 sTaskDescription = ActivityManager.TaskDescription(label, icon, colorPrimary)
             }
             setTaskDescription(sTaskDescription)
+        }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed();
+        if(backPressCloseHandler?.onBackPressed() == 2) {
+            stopService(Intent(applicationContext, InitMusicService::class.java))
         }
     }
 
