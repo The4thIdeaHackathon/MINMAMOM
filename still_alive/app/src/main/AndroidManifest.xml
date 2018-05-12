@@ -35,7 +35,13 @@
         <activity android:name=".activity.UserInfoActivity" />
         <activity android:name=".activity.SplashTimeCapsuleActivity" />
         <activity android:name=".activity.TimeCapsuleActivity" />
-        <activity android:name=".dialog.MissionDialog"></activity>
+        <activity android:name=".dialog.MissionDialog" />
+        <activity android:name=".activity.DoingQuestActivity" />
+
+        <service
+            android:name=".service.BbeService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

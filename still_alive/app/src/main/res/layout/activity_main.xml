@@ -19,7 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="40dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -28,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingBottom="10dp"
             android:text="Ha we"
             android:textColor="@color/white"
             android:textSize="24sp" />
@@ -36,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingBottom="20dp"
+            android:paddingBottom="25dp"
             android:text="Ha we Ha we Ha WE"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -51,8 +54,26 @@
             android:text="관짝 부수기"
             android:textColor="@color/white"
             android:textStyle="normal"
-            android:onClick="onClickedCapsule"/>
+            android:onClick="onClickedQuest"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="155dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/grave" />
+
+
+    </RelativeLayout>
 
 
     <RelativeLayout
@@ -63,15 +84,15 @@
         android:layout_gravity="bottom"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="10dp"
-            android:background="@android:color/transparent"
-            android:onClick="onClickedCapsule"
-            android:src="@drawable/capsule" />
+        <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:onClick="onClickedCapsule"-->
+            <!--android:src="@drawable/capsule" />-->
 
 
     </RelativeLayout>

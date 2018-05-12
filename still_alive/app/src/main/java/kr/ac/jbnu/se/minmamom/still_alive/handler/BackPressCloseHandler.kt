@@ -9,27 +9,24 @@ class BackPressCloseHandler {
     private var backKeyPressedTime: Long = 0
     private var toast: Toast? = null;
     private var activity: Activity? = null
-    private var flag: Int = 0
 
     constructor(context: Activity){
         this.activity = context;
     }
 
     fun onBackPressed(): Int {
-        if (flag == 0 && System.currentTimeMillis() > backKeyPressedTime + 2000) {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             showGuide();
-            this.flag += 1
-            return flag;
+            return 1;
         }
 
-        if (flag == 1 && System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            this.flag = 0
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             activity?.finish()
             toast?.cancel()
             return 2
         }
-        return flag;
+        return 0;
     }
 
     fun showGuide() {
