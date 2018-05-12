@@ -18,8 +18,6 @@ import com.tsengvn.typekit.TypekitContextWrapper
 import kotlinx.android.synthetic.main.toolbar.*
 import kr.ac.jbnu.se.minmamom.still_alive.R
 
-
-
 abstract class ToolbarBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

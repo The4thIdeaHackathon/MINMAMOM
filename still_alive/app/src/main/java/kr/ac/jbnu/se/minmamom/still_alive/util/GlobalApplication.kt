@@ -1,4 +1,4 @@
-package kr.ac.jbnu.se.minmamom.still_alive
+package kr.ac.jbnu.se.minmamom.still_alive.util
 
 /**
  * Copyright 2018 MINMAMOM All rights reserved.

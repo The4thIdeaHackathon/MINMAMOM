@@ -14,7 +14,7 @@ import kr.ac.jbnu.se.minmamom.still_alive.R
 import kr.ac.jbnu.se.mobileapp.activity.base.ToolbarBaseActivity
 
 
-class SplashActivity : ToolbarBaseActivity() {
+class SplashInitActivity : ToolbarBaseActivity() {
     val SPLASH_TIME_OUT = 2000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class SplashActivity : ToolbarBaseActivity() {
         setContentView(R.layout.activity_splash)
         Handler().postDelayed(object:Runnable {
             public override fun run(){
-                var home = Intent(this@SplashActivity, MainActivity::class.java)
+                var home = Intent(this@SplashInitActivity, LoginActivity::class.java)
                 startActivity(home)
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 finish()

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "332369988239",
+    "firebase_url": "https://still-alive-ebed2.firebaseio.com",
+    "project_id": "still-alive-ebed2",
+    "storage_bucket": "still-alive-ebed2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332369988239:android:1f7a4b3e0c19f49e",
+        "android_client_info": {
+          "package_name": "kr.ac.jbnu.se.minmamom.still_alive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332369988239-krqn26m09r3nrqs81d4id0310immpu81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.ac.jbnu.se.minmamom.still_alive",
+            "certificate_hash": "ea0c7f12b40a995ce9ceff3fd0190592d1ce5467"
+          }
+        },
+        {
+          "client_id": "332369988239-e37v8lhn3lnskqjm52eu79rmavbonhsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2IZ5UoZWvyOGIkXk4CkT6lM_aDlpmfLo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332369988239-e37v8lhn3lnskqjm52eu79rmavbonhsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
