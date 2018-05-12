@@ -30,9 +30,12 @@
 
         <service
             android:name=".service.InitMusicService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
-        <activity android:name=".activity.UserInfoActivity"></activity>
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.SplashTimeCapsuleActivity" />
+        <activity android:name=".activity.TimeCapsuleActivity" />
+        <activity android:name=".dialog.MissionDialog"></activity>
     </application>
 
 </manifest>

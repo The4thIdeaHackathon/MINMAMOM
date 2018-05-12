@@ -24,10 +24,10 @@ class BackPressCloseHandler {
         }
 
         if (flag == 1 && System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            this.flag += 1
+            this.flag = 0
             activity?.finish()
             toast?.cancel()
-            return flag
+            return 2
         }
         return flag;
     }

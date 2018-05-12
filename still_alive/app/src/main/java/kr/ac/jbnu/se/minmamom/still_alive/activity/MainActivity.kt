@@ -9,6 +9,11 @@ package kr.ac.jbnu.se.minmamom.still_alive.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kr.ac.jbnu.se.minmamom.still_alive.R
@@ -24,8 +29,27 @@ class MainActivity : ToolbarBaseActivity() {
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
-
         updateUI(mAuth!!.currentUser)
+
+        val image1 = findViewById(R.id.walkman) as ImageView
+        val imageViewTarget1 = GlideDrawableImageViewTarget(image1)
+        Glide.with(this).load(R.raw.walk).into(image1)
+
+        val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.translate)
+
+        image1.animation = animation
+    }
+
+    fun onClickedCapsule(v: View) {
+        var nextintent = Intent(this, SplashTimeCapsuleActivity::class.java)
+        nextintent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(nextintent)
+    }
+
+    fun onClickedQuest(v: View) {
+        var nextintent = Intent(this, SplashTimeCapsuleActivity::class.java)
+        nextintent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(nextintent)
     }
 
     private fun updateUI(user: FirebaseUser?) {
