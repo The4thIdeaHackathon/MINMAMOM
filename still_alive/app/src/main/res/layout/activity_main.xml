@@ -55,6 +55,19 @@
             android:textColor="@color/white"
             android:textStyle="normal"
             android:onClick="onClickedQuest"/>
+        <Button
+            android:id="@+id/btn_mission_com"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_gradient_circle_orange"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="다른 사람 훔쳐보기"
+            android:textColor="@color/white"
+            android:textStyle="normal"
+            android:onClick="onClickedQuest"/>
     </LinearLayout>
 
     <RelativeLayout

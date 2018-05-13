@@ -64,9 +64,18 @@ class MainActivity : ToolbarBaseActivity() {
                         if (task.isSuccessful) {
                             val document = task.result
                             if (document != null) {
-                                quest_title.setText(task.result.data.get("title").toString())
-                                quest_description.setText(task.result.data.get("description").toString())
-                                Log.d(TAG, "DocumentSnapshot data: " + task.result.data.get("title").toString())
+                                if(task.result.data.get("isClear").toString() == "true"){
+                                    quest_title.setText("오늘의 미션 완료")
+                                    quest_description.setText("오늘 미션은 깔꼼달꼼하게 끝냈습니다. 내일 봐연")
+                                    btn_mission.visibility = View.GONE
+                                    btn_mission_com.visibility = View.VISIBLE
+                                }else {
+                                    quest_title.setText(task.result.data.get("title").toString())
+                                    quest_description.setText(task.result.data.get("description").toString())
+                                    btn_mission.visibility = View.VISIBLE
+                                    btn_mission_com.visibility = View.GONE
+                                    Log.d(TAG, "DocumentSnapshot data: " + task.result.data.get("title").toString())
+                                }
                             } else {
                                 Log.d(TAG, "No such document")
                             }

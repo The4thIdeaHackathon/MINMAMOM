@@ -15,11 +15,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_doing_quest.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.jbnu.se.minmamom.still_alive.R
 import kr.ac.jbnu.se.mobileapp.activity.base.ToolbarBaseActivity
 import java.io.IOException
 import java.util.*
+
 
 class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
 
@@ -30,12 +30,17 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
     internal var storage: FirebaseStorage? =null
     internal var storageReference: StorageReference? = null
     private val PICK_IMAGE_REQUEST = 1234
+    private var userInfo: HashMap<String, Any> = HashMap<String, Any>()
+
 
     override fun onClick(p0: View?) {
         if(p0 === btn_choose)
             showFileChooser()
-        else if(p0 === btn_upload)
+        else if(p0 === btn_upload){
+            var c: String = edit_comment.getText().toString()
+            userInfo.put("comment", c)
             uploadFile()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -59,11 +64,18 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
 
-            val imageRef = storageReference!!.child("images/" + mAuth!!.currentUser?.email.toString() + "/" + UUID.randomUUID().toString())
+            val uuid: String = UUID.randomUUID().toString()
+            userInfo.put("file_name", uuid)
+            val imageRef = storageReference!!.child("images/" + mAuth!!.currentUser?.email.toString() + "/" + uuid)
             imageRef.putFile(filePath!!)
                     .addOnSuccessListener {
                         progressDialog.dismiss()
                         Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                        updateDB(mAuth!!.currentUser)
+                        var nextintent = Intent(this, MainActivity::class.java)
+                        nextintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(nextintent)
+                        overridePendingTransition(R.anim.fragment_in_backstack, R.anim.fragment_out_backstack)
                     }
                     .addOnFailureListener() {
                         progressDialog.dismiss()
@@ -73,9 +85,26 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
                         val progress = 100.0 * taskSnapshot.bytesTransferred/taskSnapshot.totalByteCount
                         progressDialog.setMessage("Uploaded " + progress.toInt() + "%...")
                     }
-
         }
 
+    }
+
+    private fun updateDB(user: FirebaseUser?) {
+        mFirestore.collection("time_capsule")
+                .document(user?.email.toString())
+                .collection("capsule1")
+                .document("1")
+                .set(userInfo)
+                .addOnSuccessListener { documentReference -> Log.d(TAG, "DocumentSnapshot add!!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+
+        userInfo.clear()
+        userInfo.put("isClear", "true")
+        mFirestore.collection("mission")
+                .document("20180513")
+                .set(userInfo)
+                .addOnSuccessListener { documentReference -> Log.d(TAG, "DocumentSnapshot add!!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +120,8 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
         //Setup Button
         btn_choose.setOnClickListener(this)
         btn_upload.setOnClickListener(this)
+
+        setText(mAuth!!.currentUser)
     }
 
     private fun showFileChooser(){
@@ -100,7 +131,7 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
         startActivityForResult(Intent.createChooser(intent, "SELECT PICTURE"), PICK_IMAGE_REQUEST)
     }
 
-    fun setQuest(user: FirebaseUser?) {
+    fun setText(user: FirebaseUser?) {
         if(user != null){
             mFirestore.collection("mission")
                     .document("20180513")
@@ -109,8 +140,11 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
                         if (task.isSuccessful) {
                             val document = task.result
                             if (document != null) {
-                                quest_title.setText(task.result.data.get("title").toString())
-                                quest_description.setText(task.result.data.get("description").toString())
+                                edit_ti.setText(task.result.data.get("title").toString())
+                                userInfo.put("quest_title", task.result.data.get("title").toString())
+                                edit_des.setText(task.result.data.get("description").toString())
+                                userInfo.put("quest_description", task.result.data.get("description").toString())
+
                                 Log.d(TAG, "DocumentSnapshot data: " + task.result.data.get("title").toString())
                             } else {
                                 Log.d(TAG, "No such document")
@@ -121,4 +155,5 @@ class DoingQuestActivity : ToolbarBaseActivity(), View.OnClickListener {
                     }
         }
     }
+
 }
