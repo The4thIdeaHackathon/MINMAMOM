@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="180dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -84,15 +84,15 @@
         android:layout_gravity="bottom"
         android:orientation="horizontal">
 
-        <!--<ImageButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:onClick="onClickedCapsule"-->
-            <!--android:src="@drawable/capsule" />-->
+
+        <ImageView
+            android:id="@+id/walkman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="72dp"
+            android:src="@drawable/capsule" />
 
 
     </RelativeLayout>

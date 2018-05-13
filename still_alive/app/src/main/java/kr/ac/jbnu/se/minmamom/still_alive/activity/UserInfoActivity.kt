@@ -50,6 +50,7 @@ class UserInfoActivity : ToolbarBaseActivity() {
             Toast.makeText(this, "훌륭해요! 지금부터 생존을 위해 노력해주세요!", Toast.LENGTH_SHORT).show();
 
             var home = Intent(this, SplashMainActivity::class.java)
+            home.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(home)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }

@@ -11,6 +11,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,13 +35,9 @@ class MainActivity : ToolbarBaseActivity() {
         mAuth = FirebaseAuth.getInstance()
         updateUI(mAuth!!.currentUser)
 
-//        val image1 = findViewById(R.id.walkman) as ImageView
-//        val imageViewTarget1 = GlideDrawableImageViewTarget(image1)
-//        Glide.with(this).load(R.raw.walk).into(image1)
-//
-//        val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.translate)
-//
-//        image1.animation = animation
+        val image1 = findViewById(R.id.walkman) as ImageView
+        val imageViewTarget1 = GlideDrawableImageViewTarget(image1)
+        Glide.with(this).load(R.raw.detective).into(image1)
 
         setQuest(mAuth!!.currentUser)
     }
@@ -51,8 +50,9 @@ class MainActivity : ToolbarBaseActivity() {
 
     fun onClickedQuest(v: View) {
         var nextintent = Intent(this, DoingQuestActivity::class.java)
-        nextintent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        nextintent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(nextintent)
+        overridePendingTransition(R.anim.fragment_in, R.anim.fragment_out)
     }
 
     fun setQuest(user: FirebaseUser?) {

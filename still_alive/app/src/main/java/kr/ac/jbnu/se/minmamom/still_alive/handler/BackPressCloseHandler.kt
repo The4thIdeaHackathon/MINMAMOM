@@ -11,12 +11,12 @@ class BackPressCloseHandler {
     private var activity: Activity? = null
 
     constructor(context: Activity){
-        this.activity = context;
+        this.activity = context
     }
 
     fun onBackPressed(): Int {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
+            backKeyPressedTime = System.currentTimeMillis()
             showGuide();
             return 1;
         }
